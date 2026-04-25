@@ -152,8 +152,8 @@ def set_mode(new_mode):
 # Change the line below to your exact sound file path if needed
 # SOUND_PATH = "/Users/...""
 
-def play_sound():
-    subprocess.run(["afplay", SOUND_PATH], check=False)
+##def play_sound():
+    ##subprocess.run(["afplay", SOUND_PATH], check=False)
 
 
 def show_alert():
@@ -210,7 +210,7 @@ def main():
             speak("encourage")
         elif user_input == "hello":
             print("SAID: Hello, world!")
-            play_sound()
+            ##play_sound()
         elif user_input == "alert":
             show_alert()
         elif user_input == "help":
