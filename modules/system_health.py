@@ -12,7 +12,8 @@ def get_system_health():
         "cpu_percent": cpu,
         "memory_percent": memory.percent,
         "disk_percent": disk.percent,
-        "battery_percent": battery_percent
+        "battery_percent": round(battery_percent)
+        
     }
 
 def get_health_verdict(health):
