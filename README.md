@@ -1,10 +1,13 @@
-# SAID
+# SAID (System Analysis & Intelligence Daemon/System Assitant In Development)
 
-SAID is a beginner-friendly Python assistant project inspired by the idea of a personal desktop helper.
+A Python-based assistant focused on system monitoring and operating system behavior.
+
+## Note
+SAID includes light personality in its responses. While generally helpful, it may occasionally be... less than emotionally supportive.
 
 ## Features
 
-- Basic command-line assistant
+- Basic command-line assistant, automated setup using Bash
 - System health checks
 - CPU, memory, disk, and battery reporting
 - Snarky responses, because professionalism has limits
