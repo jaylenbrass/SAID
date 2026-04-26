@@ -1,5 +1,7 @@
 import random
 import subprocess
+import platform
+import shutil
 
 from modules.system_health import format_system_report
 
@@ -121,10 +123,17 @@ def speak(category, app=None):
 
 
 def open_app(app_name):
+    system = platform.system()
     app_name = app_name.lower().strip()
     
     if "chatgpt" in app_name:
-        subprocess.run(["open", "-a", "ChatGPT"], check=False)
+        if system == "Darwin":  # macOS
+            subprocess.run(["open", "-a", "ChatGPT"], check=False)
+        elif system == "Linux":
+            if shutil.which("chatgpt"):
+                subprocess.Popen(["chatgpt"])
+            else:
+                print("SAID: ChatGPT app not found. Please install it or use the web version.")
         if mode == "chaos":
             print("SAID: Running to another AI? I respect the desperation.")
         elif mode == "focus":
@@ -135,10 +144,35 @@ def open_app(app_name):
             print("SAID: Opening ChatGPT. Should I feel threatened?")
     elif app_name in app_map:
         real_name = app_map[app_name]
+        if system == "Darwin":
+            subprocess.run(["open", "-a", real_name], check=False)
+        elif system == "Linux":
+            if shutil.which(real_name):
+                subprocess.Popen([real_name])
+            else:
+                print(f"SAID: {real_name} not found. You sure it's installed?...It might be a me problem")
         subprocess.run(["open", "-a", real_name], check=False)
         speak("open", real_name)
-    else:
-        print("SAID: I don't recognize that app yet.")
+    
+    try:
+        if system == "Darwin":
+            subprocess.run(["open", "-a", app_name], check=False)
+            print(f"SAID: Trying to open {app_name}...I hope this works.")
+        elif system == "Linux":
+            if shutil.which(app_name):
+                subprocess.Popen([app_name])
+                print(f"SAID: Trying to open {app_name}...I hope this works.")
+            else:
+                desktop_name =app_name.replace(" ", "-")
+                subprocess.Popen(["gtk-launch", desktop_name]
+                print(f"SAID: Trying to open {app_name}...I hope this works.")
+        else:
+            print(f"SAID: {app_name} not found. Not supported on this OS or not installed.")
+    except Exception:
+        print(f:"SAID: I tried my best. The system said unh-uh.")
+
+        speak("open", app_name)
+
 
 
 def set_mode(new_mode):
