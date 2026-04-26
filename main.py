@@ -157,13 +157,12 @@ def open_app(app_name):
     try:
         if system == "Darwin":
             subprocess.run(["open", "-a", app_name], check=False)
-            print(f"SAID: Trying to open {app_name}...I hope this works.")
         elif system == "Linux":
             if shutil.which(app_name):
                 subprocess.Popen([app_name])
                 print(f"SAID: Trying to open {app_name}...I hope this works.")
             else:
-                desktop_name =app_name.replace(" ", "-")
+                desktop_name = app_name.replace(" ", "-")
                 subprocess.Popen(["gtk-launch", desktop_name])
                 print(f"SAID: Trying to open {app_name}...I hope this works.")
         else:
