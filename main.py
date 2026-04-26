@@ -169,7 +169,7 @@ def open_app(app_name):
         else:
             print(f"SAID: {app_name} not found. Not supported on this OS or not installed.")
     except Exception:
-        print(f:"SAID: I tried my best. The system said unh-uh.")
+        print(f"SAID: I tried my best. The system said unh-uh.")
 
         speak("open", app_name)
 
