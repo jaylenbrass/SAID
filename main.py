@@ -164,7 +164,7 @@ def open_app(app_name):
                 print(f"SAID: Trying to open {app_name}...I hope this works.")
             else:
                 desktop_name =app_name.replace(" ", "-")
-                subprocess.Popen(["gtk-launch", desktop_name]
+                subprocess.Popen(["gtk-launch", desktop_name])
                 print(f"SAID: Trying to open {app_name}...I hope this works.")
         else:
             print(f"SAID: {app_name} not found. Not supported on this OS or not installed.")
