@@ -129,19 +129,23 @@ def open_app(app_name):
     if "chatgpt" in app_name:
         if system == "Darwin":  # macOS
             subprocess.run(["open", "-a", "ChatGPT"], check=False)
-        elif system == "Linux":
+        else:
+            return(f"SAID: ChatGPT app not found. Please install it or use the web version.")
+        if system == "Linux":
             if shutil.which("chatgpt"):
                 subprocess.Popen(["chatgpt"])
             else:
-                print("SAID: ChatGPT app not found. Please install it or use the web version.")
+                return("SAID: ChatGPT app not found. Please install it or use the web version.")
         if mode == "chaos":
-            print("SAID: Running to another AI? I respect the desperation.")
+            return("SAID: Running to another AI? I respect the desperation.")
         elif mode == "focus":
-            print("SAID: Stay focused. This better be productive.")
+            return("SAID: Stay focused. This better be productive.")
         elif mode == "soft":
-            print("SAID: Got it. Here when you need me :)")
+            return("SAID: Got it. Here when you need me :)")
         else:
-            print("SAID: Opening ChatGPT. Should I feel threatened?")
+            return("SAID: Opening ChatGPT app. Should I be worried about this?")
+        return
+    
     elif app_name in app_map:
         real_name = app_map[app_name]
         if system == "Darwin":
@@ -231,7 +235,9 @@ def main():
             break
         elif user_input.startswith("open "):
             app_name = user_input.replace("open ", "", 1)
-            open_app(app_name)
+            response = open_app(app_name)
+            if response:
+                print(f"SAID: opening {app_name}...")
         elif user_input.startswith("mode "):
             new_mode = user_input.replace("mode ", "", 1)
             set_mode(new_mode)
