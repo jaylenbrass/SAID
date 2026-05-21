@@ -2,6 +2,7 @@ import random
 import subprocess
 import platform
 import shutil
+import psutil
 
 from modules.system_health import format_system_report
 
@@ -229,7 +230,7 @@ def main():
                 print("SAID: Powering down. Remember, you can do this.")
             if mode == "soft":
                 print("SAID: Going offline. Take care of yourself, boss.")
-                play_sound()
+                ##play_sound()
             else:                
                 print("SAID: See ya later! :)")
             break
@@ -241,8 +242,6 @@ def main():
         elif user_input.startswith("mode "):
             new_mode = user_input.replace("mode ", "", 1)
             set_mode(new_mode)
-            if mode == "soft":
-                play_sound()
         elif user_input == "roast me":
             speak("roast")
         elif user_input == "encourage me":
